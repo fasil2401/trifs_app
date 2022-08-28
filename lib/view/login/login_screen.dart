@@ -2,13 +2,16 @@ import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trifs_app/controller/Api%20Controls/login_controller.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/utils/routes/route_manager.dart';
 import 'package:trifs_app/view/Components/login_button.dart';
 import 'package:trifs_app/view/Components/login_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  final loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,10 @@ class LoginScreen extends StatelessWidget {
                             hintText: 'Email or Mobile Number',
                             prefixIcon: Icons.person,
                             isObscureText: false,
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {},
+                            keyboardType: TextInputType.phone,
+                            onChanged: (val) {
+                              loginController.getMobileNumber(val);
+                            },
                           ),
                           SizedBox(
                             height: h * 0.02,
@@ -74,8 +79,10 @@ class LoginScreen extends StatelessWidget {
                             hintText: 'Password',
                             prefixIcon: Icons.lock,
                             isObscureText: true,
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {},
+                            keyboardType: TextInputType.visiblePassword,
+                            onChanged: (val) {
+                              loginController.getPassword(val);
+                            },
                           ),
                           Align(
                             alignment: Alignment.centerRight,

@@ -16,11 +16,11 @@ static const String registerScreen = '/register';
         transition: Transition.cupertino),
     GetPage(
         name: '/login',
-        page: () => const LoginScreen(),
+        page: () =>  LoginScreen(),
         transition: Transition.cupertino),
     GetPage(
         name: '/register',
-        page: () => const RegisterScreen(),
+        page: () =>  RegisterScreen(),
         transition: Transition.cupertino)
   ];
 }

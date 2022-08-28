@@ -2,13 +2,16 @@ import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trifs_app/controller/Api%20Controls/register_controller.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/utils/routes/route_manager.dart';
 import 'package:trifs_app/view/Components/login_button.dart';
 import 'package:trifs_app/view/Components/login_text_field.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
+
+  final registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                             hintText: 'Full Name',
                             prefixIcon: Icons.person,
                             isObscureText: false,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.name,
                             onChanged: (val) {},
                           ),
                           SizedBox(
@@ -64,8 +67,25 @@ class RegisterScreen extends StatelessWidget {
                             hintText: 'Mobile Number',
                             prefixIcon: Icons.phone_android_outlined,
                             isObscureText: false,
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {},
+                            keyboardType: TextInputType.phone,
+                            onChanged: (val) {
+                              registerController.getMobileNumber(val);
+                            },
+                          ),
+                          Obx(
+                            () => Visibility(
+                              visible: registerController.mobileWarning.value,
+                              child: const Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  'Mobile Number must be 10 digits',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: h * 0.02,
@@ -75,7 +95,24 @@ class RegisterScreen extends StatelessWidget {
                             prefixIcon: Icons.mail_outline,
                             isObscureText: false,
                             keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {},
+                            onChanged: (val) {
+                              registerController.getEmail(val);
+                            },
+                          ),
+                          Obx(
+                            () => Visibility(
+                              visible: registerController.emailWarning.value,
+                              child: const Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  'Please enter a valid email address',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: h * 0.02,
@@ -84,7 +121,7 @@ class RegisterScreen extends StatelessWidget {
                             hintText: 'Password',
                             prefixIcon: Icons.lock,
                             isObscureText: true,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.visiblePassword,
                             onChanged: (val) {},
                           ),
                           SizedBox(
@@ -94,7 +131,7 @@ class RegisterScreen extends StatelessWidget {
                             hintText: 'Confirm Password',
                             prefixIcon: Icons.lock,
                             isObscureText: false,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.visiblePassword,
                             onChanged: (val) {},
                           ),
                         ],
