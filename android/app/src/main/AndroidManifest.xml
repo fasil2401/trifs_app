@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trifs_app">
    <application
-        android:label="trifs_app"
+        android:label="Trifs"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

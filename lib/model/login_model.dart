@@ -25,7 +25,7 @@ class LoginModel {
   Map<String, dynamic> toJson() => {
         "sts": sts,
         "msg": msg,
-        "user": user!.toJson(),
+        "user": user?.toJson(),
       };
 }
 

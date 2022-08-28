@@ -100,12 +100,15 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    LoginButton(
-                      w: w,
-                      h: h,
-                      onPressed: () {},
-                      text: 'Sign In',
-                      isLoading: false,
+                    Obx(
+                      () => LoginButton(
+                          w: w,
+                          h: h,
+                          onPressed: () {
+                            loginController.getLogin();
+                          },
+                          text: 'Sign In',
+                          isLoading: loginController.isLoading.value),
                     ),
                     SizedBox(
                       height: h * 0.04,

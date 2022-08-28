@@ -58,7 +58,9 @@ class RegisterScreen extends StatelessWidget {
                             prefixIcon: Icons.person,
                             isObscureText: false,
                             keyboardType: TextInputType.name,
-                            onChanged: (val) {},
+                            onChanged: (val) {
+                              registerController.getName(val);
+                            },
                           ),
                           SizedBox(
                             height: h * 0.02,
@@ -122,17 +124,21 @@ class RegisterScreen extends StatelessWidget {
                             prefixIcon: Icons.lock,
                             isObscureText: true,
                             keyboardType: TextInputType.visiblePassword,
-                            onChanged: (val) {},
+                            onChanged: (val) {
+                              registerController.getPassword(val);
+                            },
                           ),
                           SizedBox(
                             height: h * 0.02,
                           ),
                           LoginTextField(
-                            hintText: 'Confirm Password',
+                            hintText: 'Pincode',
                             prefixIcon: Icons.lock,
                             isObscureText: false,
                             keyboardType: TextInputType.visiblePassword,
-                            onChanged: (val) {},
+                            onChanged: (val) {
+                              registerController.getPincode(val);
+                            },
                           ),
                         ],
                       ),
@@ -140,12 +146,16 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(
                       height: h * 0.04,
                     ),
-                    LoginButton(
-                      w: w,
-                      h: h,
-                      onPressed: () {},
-                      text: 'Sign Up',
-                      isLoading: false,
+                    Obx(
+                      () => LoginButton(
+                        w: w,
+                        h: h,
+                        onPressed: () {
+                          registerController.getRegister();
+                        },
+                        text: 'Sign Up',
+                        isLoading: registerController.isLoading.value,
+                      ),
                     ),
                     SizedBox(
                       height: h * 0.1,
