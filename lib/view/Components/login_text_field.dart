@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class LoginTextField extends StatelessWidget {
   const LoginTextField({
     Key? key,
@@ -11,11 +10,11 @@ class LoginTextField extends StatelessWidget {
     required this.prefixIcon,
   }) : super(key: key);
 
-final String hintText;
-final IconData prefixIcon;
-final TextInputType keyboardType;
-final bool isObscureText;
-final Function(String val) onChanged;
+  final String hintText;
+  final IconData prefixIcon;
+  final TextInputType keyboardType;
+  final bool isObscureText;
+  final Function(String val) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +25,17 @@ final Function(String val) onChanged;
       ),
       child: TextField(
         keyboardType: keyboardType,
-        obscureText: isObscureText ,
+        obscureText: isObscureText,
         decoration: InputDecoration(
+          isCollapsed: true,
           hintStyle: TextStyle(fontSize: 15),
           hintText: hintText,
           prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Icon(prefixIcon),
           ),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.all(20),
+          contentPadding: EdgeInsets.all(15),
         ),
         onChanged: onChanged,
       ),

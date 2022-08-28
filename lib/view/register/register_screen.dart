@@ -7,8 +7,8 @@ import 'package:trifs_app/utils/routes/route_manager.dart';
 import 'package:trifs_app/view/Components/login_button.dart';
 import 'package:trifs_app/view/Components/login_text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
             width: w,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: const AssetImage('assets/images/login.jpg'),
+                  image: const AssetImage('assets/images/sign up.png'),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.8), BlendMode.overlay)),
@@ -36,18 +36,8 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: Image.asset(
-                        'assets/images/trifs_logo_login.png',
-                      ),
-                    ),
-                    SizedBox(
-                      height: h * 0.01,
-                    ),
                     const Text(
-                      "Welcome Back!",
+                      "Join Us!",
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -61,8 +51,28 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           LoginTextField(
-                            hintText: 'Email or Mobile Number',
+                            hintText: 'Full Name',
                             prefixIcon: Icons.person,
+                            isObscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (val) {},
+                          ),
+                          SizedBox(
+                            height: h * 0.02,
+                          ),
+                          LoginTextField(
+                            hintText: 'Mobile Number',
+                            prefixIcon: Icons.phone_android_outlined,
+                            isObscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (val) {},
+                          ),
+                          SizedBox(
+                            height: h * 0.02,
+                          ),
+                          LoginTextField(
+                            hintText: 'Email Address',
+                            prefixIcon: Icons.mail_outline,
                             isObscureText: false,
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (val) {},
@@ -77,34 +87,34 @@ class LoginScreen extends StatelessWidget {
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (val) {},
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Forgot Password ?',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
+                          SizedBox(
+                            height: h * 0.02,
+                          ),
+                          LoginTextField(
+                            hintText: 'Confirm Password',
+                            prefixIcon: Icons.lock,
+                            isObscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (val) {},
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: h * 0.04,
                     ),
                     LoginButton(
                       w: w,
                       h: h,
                       onPressed: () {},
-                      text: 'Sign In',
+                      text: 'Sign Up',
                       isLoading: false,
                     ),
                     SizedBox(
-                      height: h * 0.04,
+                      height: h * 0.1,
                     ),
                     EasyRichText(
-                      'Don\'t have an account ? Sign Up here',
+                      'Don\'t have an account ? Sign In here',
                       defaultStyle: const TextStyle(
                         color: AppColors.white,
                       ),
@@ -112,9 +122,9 @@ class LoginScreen extends StatelessWidget {
                         EasyRichTextPattern(
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Get.toNamed(AppRoutes.registerScreen);
+                              Get.toNamed(AppRoutes.loginScreen);
                             },
-                          targetString: 'Sign Up',
+                          targetString: 'Sign In',
                           style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
                       ],
