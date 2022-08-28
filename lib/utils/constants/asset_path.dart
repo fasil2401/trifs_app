@@ -5,5 +5,5 @@ class AppImages {
 
 class AppIcons {
   static const String base = 'assets/icons/';
-  static const String logo = '${base}home.svg';  
+  static const String logo = '${base}home.svg';
 }
