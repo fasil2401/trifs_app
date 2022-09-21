@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trifs_app/controller/Api%20Controls/register_controller.dart';
+import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/utils/routes/route_manager.dart';
 import 'package:trifs_app/view/Components/login_button.dart';
@@ -25,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
             width: w,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: const AssetImage('assets/images/sign up.png'),
+                  image: const AssetImage(AppImages.registerBackground),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.8), BlendMode.overlay)),

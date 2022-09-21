@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trifs_app/controller/app%20controls/splash_screen_controller.dart';
+import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -19,7 +20,7 @@ class SplashScreen extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/splash background.png'),
+                    image: AssetImage(AppImages.splashBackground),
                     fit: BoxFit.cover)),
           ),
           Center(
@@ -27,7 +28,7 @@ class SplashScreen extends StatelessWidget {
               width: 100,
               height: 100,
               child: Image.asset(
-                'assets/images/trifs_logo.png',
+                AppImages.logo,
               ),
             ),
           )
