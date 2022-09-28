@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:sizer/sizer.dart';
-import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/app_bar.dart';
+import 'package:trifs_app/view/Components/carousel.dart';
+import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Explore%20Screen/Components/districts.dart';
+import 'package:trifs_app/view/Explore%20Screen/Components/trending_slider.dart';
 
 class ExploreScreen extends StatelessWidget {
   ExploreScreen({super.key});
@@ -21,60 +22,38 @@ class ExploreScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: TrifsAppBar(
-          title: 'Explore Screen',
+          title: 'Explore',
           isLocation: true,
         ),
       ),
-      body: Column(
-        children: [
-          GFCarousel(
-            aspectRatio: 18 / 9,
-            viewportFraction: 0.8,
-            enlargeMainPage: true,
-            items: imageList.map(
-              (url) {
-                return Stack(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: Image.network(url,
-                            fit: BoxFit.cover, width: 1000.0, height: 1000.0),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 15.0, left: 8.0),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: AppColors.black.withOpacity(0.3),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                          ),
-                        ),
-                        child: Text(
-                          'Name',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 10.sp,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                );
-              },
-            ).toList(),
-            onPageChanged: (index) {
-              // setState(() {
-              //   index;
-              // });
-            },
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ExploreCarousel(imageList: imageList),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText.buildTitleText(
+                    title: 'Kerala > Districts',
+                  ),
+                  KeralaWidget(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CustomText.buildTitleText(
+                    title: 'Trending Now',
+                  ),
+                  TrendingSlider()
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

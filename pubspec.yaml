@@ -41,6 +41,7 @@ dependencies:
   glassmorphism: ^3.0.0
   flutter_svg: ^1.1.5
   getwidget: ^3.0.1
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
     - assets/images/
     - assets/images/no_image/
     - assets/images/trifswitches/
+    - assets/images/districts/
     - assets/icons/
   #   - images/a_dot_ham.jpeg
 

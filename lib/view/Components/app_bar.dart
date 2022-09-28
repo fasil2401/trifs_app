@@ -6,13 +6,13 @@ class TrifsAppBar extends StatelessWidget {
   final bool isLocation;
   const TrifsAppBar({
     Key? key,
-   required this.title,
-   required this.isLocation,
+    required this.title,
+    required this.isLocation,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Explore Screen'),
+      title: Text(title),
       automaticallyImplyLeading: true,
       actions: [
         IconButton(

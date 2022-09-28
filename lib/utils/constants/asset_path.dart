@@ -2,6 +2,7 @@ class AppImages {
   static const String base = 'assets/images/';
   static const String placeHolderBase = '${base}no_image/';
   static const String trifSwitchBase = '${base}trifswitches/';
+  static const String districtBase = '${base}districts/';
   static const String logo = '${base}trifs_logo.png';
   static const String loginLogo = '${base}trifs_logo_login.png';
   static const String splashBackground = '${base}splash background.png';
@@ -20,6 +21,20 @@ class AppImages {
   static const String swiggySwitch = '${trifSwitchBase}swiggy.png';
   static const String uberSwitch = '${trifSwitchBase}uber.png';
   static const String zomatoSwitch = '${trifSwitchBase}zomato.png';
+  static const String trivandrum = '${districtBase}trivandrum.jpeg';
+  static const String kollam = '${districtBase}kollam.jpeg';
+  static const String alappuzha = '${districtBase}alappuzha.jpeg';
+  static const String pathanamthitta = '${districtBase}pathanamthitta.jpeg';
+  static const String kottayam = '${districtBase}kottayam.jpeg';
+  static const String idukki = '${districtBase}idukki.jpeg';
+  static const String kochi = '${districtBase}kochi.jpeg';
+  static const String thrissur = '${districtBase}thrissur.jpeg';
+  static const String palakkad = '${districtBase}palakkad.jpeg';
+  static const String malappuram = '${districtBase}malappuram.jpeg';
+  static const String calicut = '${districtBase}calicut.jpeg';
+  static const String wayanad = '${districtBase}wayanad.jpeg';
+  static const String kannur = '${districtBase}kannur.jpeg';
+  static const String kasargod = '${districtBase}kasargod.jpeg';
 }
 
 class AppIcons {

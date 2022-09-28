@@ -71,7 +71,7 @@ class RegisterController extends GetxController {
       if (status.value == '01') {
         isLoading.value = false;
         SnackBarServices.showSuccessSnackBar(
-          'Please Login',
+          message.value,
         );
         Get.offAllNamed(AppRoutes.loginScreen);
       } else {

@@ -128,3 +128,70 @@ class _EnlargingCarouselState extends State<EnlargingCarousel> {
     );
   }
 }
+
+
+class ExploreCarousel extends StatefulWidget {
+  const ExploreCarousel({
+    Key? key,
+    required this.imageList,
+  }) : super(key: key);
+
+  final List<String> imageList;
+
+  @override
+  State<ExploreCarousel> createState() => _ExploreCarouselState();
+}
+
+class _ExploreCarouselState extends State<ExploreCarousel> {
+  @override
+  Widget build(BuildContext context) {
+    return GFCarousel(
+      aspectRatio: 20 / 9,
+      viewportFraction: 0.8,
+      enlargeMainPage: true,
+      items: widget.imageList.map(
+        (url) {
+          return Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  child: Image.network(url,
+                      fit: BoxFit.cover, width: 1000.0, height: 1000.0),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 15.0, left: 8.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: AppColors.black.withOpacity(0.3),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    'Name',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 10.sp,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          );
+        },
+      ).toList(),
+      onPageChanged: (index) {
+        setState(() {
+          index;
+        });
+      },
+    );
+  }
+}
+
