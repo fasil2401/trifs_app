@@ -11,6 +11,9 @@ class VodcastsHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child: Container(
             height: 16.h,
             padding: EdgeInsets.all(8),
@@ -22,8 +25,7 @@ class VodcastsHomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   decoration: BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(10),

@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final _pageOptions = [
      HomeScreen(),
-    const ExploreScreen(),
+     ExploreScreen(),
     const FavoriteScreen(),
     const OfferScreen(),
     const ProfileScreen(),

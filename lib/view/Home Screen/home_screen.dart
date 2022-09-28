@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
+import 'package:trifs_app/view/Components/main_package.dart';
 import 'package:trifs_app/view/Components/top_attraction_slider.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/trif_switches.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/vodcast_homescreen.dart';
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             Container(
-              height: 45.h,
+              height: 50.h,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
@@ -138,31 +138,38 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        TitleText(
+                        CustomText.buildTitleText(
                           title: 'Top Attractions',
                         ),
                         TopAttractionSlider(),
                         SizedBox(
                           height: 10,
                         ),
-                        TitleText(
+                        CustomText.buildTitleText(
                           title: 'Nearby Places',
                         ),
                         EnlargingCarousel(imageList: imageList),
                         SizedBox(
                           height: 10,
                         ),
-                        TitleText(
+                        CustomText.buildTitleText(
                           title: 'TrifSwitches',
                         ),
                         Switches(),
                         SizedBox(
                           height: 10,
                         ),
-                        TitleText(
+                        CustomText.buildTitleText(
                           title: 'Trifs Vodcasts',
                         ),
                         VodcastsHomePage(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomText.buildTitleText(
+                          title: 'Recommended Packages',
+                        ),
+                        MainPackageCardList(),
                       ],
                     ),
                   ),
