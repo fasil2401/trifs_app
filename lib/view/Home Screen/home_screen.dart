@@ -5,7 +5,11 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
-import 'package:trifs_app/view/Components/promoted_carousel.dart';
+import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Components/carousel.dart';
+import 'package:trifs_app/view/Components/top_attraction_slider.dart';
+import 'package:trifs_app/view/Home%20Screen/Components/trif_switches.dart';
+import 'package:trifs_app/view/Home%20Screen/Components/vodcast_homescreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -27,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -55,13 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: AppColors.white,
+                      color: AppColors.lightGrey,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40),
                       ),
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 30,
@@ -131,6 +135,34 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 20,
                         ),
                         PromotedCarousel(imageList: imageList),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TitleText(
+                          title: 'Top Attractions',
+                        ),
+                        TopAttractionSlider(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TitleText(
+                          title: 'Nearby Places',
+                        ),
+                        EnlargingCarousel(imageList: imageList),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TitleText(
+                          title: 'TrifSwitches',
+                        ),
+                        Switches(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TitleText(
+                          title: 'Trifs Vodcasts',
+                        ),
+                        VodcastsHomePage(),
                       ],
                     ),
                   ),
