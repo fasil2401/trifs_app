@@ -15,6 +15,7 @@ import 'package:trifs_app/view/Home%20Screen/Components/trif_switches.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/vodcast_homescreen.dart';
 import 'package:trifs_app/view/HouseBoatScreen/house_boat_screen.dart';
 import 'package:trifs_app/view/ToursScreen/tour_screen.dart';
+import 'package:trifs_app/view/TravelScreen/travel_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return false;
                 },
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                  // physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       _buildLocationWidget(),
@@ -106,7 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 _buildHomeIcons(
                                   asset: AppIcons.travel,
                                   title: 'Travel',
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.to(() => const TravelScreen());
+                                  },
                                   comingSoon: false,
                                 )
                               ],
@@ -150,10 +153,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            CustomText.buildTitleText(
-                              title: 'Top Attractions',
-                            ),
-                            TopAttractionSlider(),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomText.buildTitleText(
+                                      title: 'Top Attractions',
+                                    ),
+                                    TopAttractionSlider(),
+                                  ],
+                                )),
                             SizedBox(
                               height: 10,
                             ),
@@ -164,24 +174,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            CustomText.buildTitleText(
-                              title: 'TrifSwitches',
-                            ),
-                            Switches(),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            CustomText.buildTitleText(
-                              title: 'Trifs Vodcasts',
-                            ),
-                            VodcastsHomePage(),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            CustomText.buildTitleText(
-                              title: 'Recommended Packages',
-                            ),
-                            MainPackageCardList(),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText.buildTitleText(
+                                    title: 'TrifSwitches',
+                                  ),
+                                  Switches(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  CustomText.buildTitleText(
+                                    title: 'Trifs Vodcasts',
+                                  ),
+                                  VodcastsHomePage(),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  CustomText.buildTitleText(
+                                    title: 'Recommended Packages',
+                                  ),
+                                  MainPackageCardList(),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),

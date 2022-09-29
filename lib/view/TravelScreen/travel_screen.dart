@@ -3,12 +3,10 @@ import 'package:trifs_app/utils/constants/dummy_list.dart';
 import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
-import 'package:trifs_app/view/HouseBoatScreen/components/discover_housboat_list.dart';
-import 'package:trifs_app/view/HouseBoatScreen/components/promoted_agency_slider.dart';
-import 'package:trifs_app/view/HouseBoatScreen/components/recomended_houseboat.dart';
+import 'package:trifs_app/view/TravelScreen/components/travel_package_list.dart';
 
-class HouseBoatScreen extends StatelessWidget {
-  const HouseBoatScreen({Key? key}) : super(key: key);
+class TravelScreen extends StatelessWidget {
+  const TravelScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,7 @@ class HouseBoatScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: TrifsAppBar(
-          title: 'HouseBoats',
+          title: 'Travel',
           isLocation: true,
         ),
       ),
@@ -32,20 +30,9 @@ class HouseBoatScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.buildTitleText(
-                  title: 'Recomended Packages',
+                  title: 'Vehicles in Ollur...',
                 ),
-                RecommendedHouseBoatPackages(),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomText.buildTitleText(
-                  title: 'Promoted Agencies',
-                ),
-                PromotedAgencySlider(),
-                CustomText.buildTitleText(
-                  title: 'Discover HouseBoats',
-                ),
-                DiscoverHouseBoatPackage()
+                TravelPackage()
               ],
             ),
           )
