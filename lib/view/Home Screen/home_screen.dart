@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/utils/constants/dummy_list.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/main_package.dart';
 import 'package:trifs_app/view/Components/top_attraction_slider.dart';
+import 'package:trifs_app/view/GlobalTripScreen/global_tripScreen.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/trif_switches.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/vodcast_homescreen.dart';
+import 'package:trifs_app/view/HouseBoatScreen/house_boat_screen.dart';
+import 'package:trifs_app/view/ToursScreen/tour_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -19,164 +24,173 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> imageList = [
-    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
-    "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: 50.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                image: DecorationImage(
-                    image: AssetImage(
-                      AppImages.homeBackground,
-                    ),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.4), BlendMode.darken)),
-              ),
-            ),
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  _buildLocationWidget(),
-                  _buildText(),
-                  _buildSearchWidget(),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightGrey,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification overscroll) {
+            overscroll.disallowIndicator();
+            return false;
+          },
+          child: Stack(
+            children: [
+              Container(
+                height: 50.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  image: DecorationImage(
+                      image: AssetImage(
+                        AppImages.homeBackground,
                       ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildHomeIcons(
-                              asset: AppIcons.tours,
-                              title: 'Tours',
-                              onTap: () {},
-                              comingSoon: false,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.globaltravel,
-                              title: 'Global Trip',
-                              onTap: () {},
-                              comingSoon: false,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.houseboat,
-                              title: 'House Boat',
-                              onTap: () {},
-                              comingSoon: false,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.travel,
-                              title: 'Travel',
-                              onTap: () {},
-                              comingSoon: false,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildHomeIcons(
-                              asset: AppIcons.camping,
-                              title: 'Camping',
-                              onTap: () {},
-                              comingSoon: true,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.resort,
-                              title: 'Resort',
-                              onTap: () {},
-                              comingSoon: true,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.homestay,
-                              title: 'Homestay',
-                              onTap: () {},
-                              comingSoon: true,
-                            ),
-                            _buildHomeIcons(
-                              asset: AppIcons.trekking,
-                              title: 'Trekking',
-                              onTap: () {},
-                              comingSoon: true,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        PromotedCarousel(imageList: imageList),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomText.buildTitleText(
-                          title: 'Top Attractions',
-                        ),
-                        TopAttractionSlider(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomText.buildTitleText(
-                          title: 'Nearby Places',
-                        ),
-                        EnlargingCarousel(imageList: imageList),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomText.buildTitleText(
-                          title: 'TrifSwitches',
-                        ),
-                        Switches(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomText.buildTitleText(
-                          title: 'Trifs Vodcasts',
-                        ),
-                        VodcastsHomePage(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CustomText.buildTitleText(
-                          title: 'Recommended Packages',
-                        ),
-                        MainPackageCardList(),
-                      ],
-                    ),
-                  ),
-                ],
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.4), BlendMode.darken)),
+                ),
               ),
-            ),
-          ],
+              NotificationListener<OverscrollIndicatorNotification>(
+                onNotification: (OverscrollIndicatorNotification overscroll) {
+                  overscroll.disallowIndicator();
+                  return false;
+                },
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      _buildLocationWidget(),
+                      _buildText(),
+                      _buildSearchWidget(),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: AppColors.lightGrey,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                _buildHomeIcons(
+                                  asset: AppIcons.tours,
+                                  title: 'Tours',
+                                  onTap: () {
+                                    Get.to(() => const TourScreen());
+                                  },
+                                  comingSoon: false,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.globaltravel,
+                                  title: 'Global Trip',
+                                  onTap: () {
+                                    Get.to(() => const GlobalTripScreen());
+                                  },
+                                  comingSoon: false,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.houseboat,
+                                  title: 'House Boat',
+                                  onTap: () {
+                                    Get.to(() => const HouseBoatScreen());
+                                  },
+                                  comingSoon: false,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.travel,
+                                  title: 'Travel',
+                                  onTap: () {},
+                                  comingSoon: false,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                _buildHomeIcons(
+                                  asset: AppIcons.camping,
+                                  title: 'Camping',
+                                  onTap: () {},
+                                  comingSoon: true,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.resort,
+                                  title: 'Resort',
+                                  onTap: () {},
+                                  comingSoon: true,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.homestay,
+                                  title: 'Homestay',
+                                  onTap: () {},
+                                  comingSoon: true,
+                                ),
+                                _buildHomeIcons(
+                                  asset: AppIcons.trekking,
+                                  title: 'Trekking',
+                                  onTap: () {},
+                                  comingSoon: true,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            PromotedCarousel(imageList: DummyList.imageList),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText.buildTitleText(
+                              title: 'Top Attractions',
+                            ),
+                            TopAttractionSlider(),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText.buildTitleText(
+                              title: 'Nearby Places',
+                            ),
+                            EnlargingCarousel(imageList: DummyList.imageList),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText.buildTitleText(
+                              title: 'TrifSwitches',
+                            ),
+                            Switches(),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText.buildTitleText(
+                              title: 'Trifs Vodcasts',
+                            ),
+                            VodcastsHomePage(),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CustomText.buildTitleText(
+                              title: 'Recommended Packages',
+                            ),
+                            MainPackageCardList(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
