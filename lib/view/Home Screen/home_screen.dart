@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/controller/app%20controls/location_controller.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/utils/constants/dummy_list.dart';
@@ -25,6 +26,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final locationController = Get.put(LocationController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -331,7 +334,8 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 
-  Padding _buildLocationWidget() {
+  Widget _buildLocationWidget() {
+    // getLocation();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Align(
@@ -375,12 +379,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(left: 12),
                   child: SizedBox(
                     width: 110,
-                    child: Text('Thiruvananthapuram, Kerala',
+                    child: Obx(() => Text(locationController.location.value,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             color: AppColors.white,
                             fontSize: 12,
-                            fontWeight: FontWeight.w600)),
+                            fontWeight: FontWeight.w600))),
                   ),
                 ),
                 CircleAvatar(
