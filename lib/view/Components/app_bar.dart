@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/SearchScreen/search_screen.dart';
 
 class TrifsAppBar extends StatelessWidget {
   final String title;
@@ -21,7 +22,9 @@ class TrifsAppBar extends StatelessWidget {
         IconButton(
           splashColor: AppColors.primaryColor.withOpacity(0.5),
           splashRadius: 20,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => SearchScreen());
+          },
           icon: Icon(Icons.search),
         ),
         Visibility(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
+import 'package:trifs_app/utils/constants/colors.dart';
 
 class TravelPackage extends StatelessWidget {
   TravelPackage({
@@ -22,7 +23,7 @@ class TravelPackage extends StatelessWidget {
           child: Container(
             // padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(

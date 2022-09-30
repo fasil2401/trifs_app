@@ -4,6 +4,7 @@ import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/TravelScreen/components/travel_package_list.dart';
+import 'package:trifs_app/view/TravelScreen/components/vehicle_category_slider.dart';
 
 class TravelScreen extends StatelessWidget {
   const TravelScreen({Key? key}) : super(key: key);
@@ -29,6 +30,10 @@ class TravelScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                VehicleCategoryList(),
+                SizedBox(
+                  height: 10,
+                ),
                 CustomText.buildTitleText(
                   title: 'Vehicles in Ollur...',
                 ),
