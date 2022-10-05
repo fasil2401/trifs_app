@@ -340,61 +340,64 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Align(
         alignment: Alignment.topRight,
-        child: GlassmorphicContainer(
-            alignment: Alignment.centerRight,
-            width: 160,
-            height: 35,
-            border: 0,
-            blur: 10,
-            borderRadius: 50,
-            linearGradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFFFFFF),
-                  Color(0xFFFFFFF),
-                ],
-                stops: [
-                  0.3,
-                  1,
-                ]),
-            borderGradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFFFFFF).withAlpha(01),
-                  Color(0xFFFFFFF).withAlpha(100),
-                  Color(0xFFFFFFF).withAlpha(01),
-                ],
-                stops: [
-                  0.2,
-                  0.9,
-                  1,
-                ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: SizedBox(
-                    width: 110,
-                    child: Obx(() => Text(locationController.location.value,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600))),
+        child: InkWell(
+          // onTap: () => locationController.getCurrentLocation(),
+          child: GlassmorphicContainer(
+              alignment: Alignment.centerRight,
+              width: 160,
+              height: 35,
+              border: 0,
+              blur: 10,
+              borderRadius: 50,
+              linearGradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFFFFFF),
+                    Color(0xFFFFFFF),
+                  ],
+                  stops: [
+                    0.3,
+                    1,
+                  ]),
+              borderGradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFFFFFF).withAlpha(01),
+                    Color(0xFFFFFFF).withAlpha(100),
+                    Color(0xFFFFFFF).withAlpha(01),
+                  ],
+                  stops: [
+                    0.2,
+                    0.9,
+                    1,
+                  ]),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: SizedBox(
+                      width: 110,
+                      child: Obx(() => Text(locationController.location.value,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: AppColors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600))),
+                    ),
                   ),
-                ),
-                CircleAvatar(
-                  radius: 17,
-                  backgroundColor: AppColors.primaryColor.withOpacity(0.8),
-                  child:
-                      Icon(Icons.location_on, color: AppColors.white, size: 20),
-                ),
-              ],
-            )),
+                  CircleAvatar(
+                    radius: 17,
+                    backgroundColor: AppColors.primaryColor.withOpacity(0.8),
+                    child: Icon(Icons.location_on,
+                        color: AppColors.white, size: 20),
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }

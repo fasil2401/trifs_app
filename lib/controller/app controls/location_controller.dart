@@ -37,6 +37,7 @@ class LocationController extends GetxController {
   }
 
   Future<void> getAddressFromLocation(Position position) async {
+    print('getting address');
     List<Placemark> placeMarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placeMarks);
@@ -44,6 +45,9 @@ class LocationController extends GetxController {
     print(place.postalCode);
     pinCode.value = place.postalCode!;
     location.value = place.locality!;
+    if (pinCode.value == '') {
+      getCurrentLocation();
+    }
   }
 
   getCurrentLocation() async {
