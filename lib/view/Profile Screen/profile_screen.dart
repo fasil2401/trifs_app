@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
@@ -19,6 +20,10 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: AppColors.primaryColor,
+                  image: DecorationImage(
+                    image: AssetImage(AppImages.profileBackground),
+                    fit: BoxFit.cover,
+                  ),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50),
@@ -57,71 +62,74 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 53.h,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText.buildTitleText(
-                                title: 'Dashboard',
-                              ),
-                              SizedBox(
-                                height: 1.h,
-                              ),
-                              _buildAccountRows(
-                                title: 'About Us',
-                                icon: Icons.home,
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              _buildAccountRows(
-                                title: 'Notifications',
-                                icon: Icons.notifications,
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              _buildAccountRows(
-                                title: 'Privacy',
-                                icon: Icons.privacy_tip,
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              _buildAccountRows(
-                                title: 'Terms & Conditions',
-                                icon: Icons.flag_outlined,
-                              ),
-                              SizedBox(
-                                height: 2.5.h,
-                              ),
-                              _buildAccountRows(
-                                title: 'Support',
-                                icon: Icons.support_agent,
-                              ),
-                              SizedBox(
-                                height: 4.h,
-                              ),
-                              _buildText(
-                                title: 'My Account',
-                                color: AppColors.grey,
-                              ),
-                              SizedBox(
-                                height: 3.5.h,
-                              ),
-                              _buildText(
-                                title: 'Change Password',
-                                color: AppColors.primaryColor,
-                              ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              _buildText(
-                                title: 'Logout',
-                                color: AppColors.red,
-                              ),
-                            ],
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText.buildTitleText(
+                                  title: 'Dashboard',
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                _buildAccountRows(
+                                  title: 'About Us',
+                                  icon: AppIcons.about,
+                                ),
+                                SizedBox(
+                                  height: 2.5.h,
+                                ),
+                                _buildAccountRows(
+                                  title: 'Notifications',
+                                  icon: AppIcons.notification,
+                                ),
+                                SizedBox(
+                                  height: 2.5.h,
+                                ),
+                                _buildAccountRows(
+                                  title: 'Privacy',
+                                  icon: AppIcons.privacy,
+                                ),
+                                SizedBox(
+                                  height: 2.5.h,
+                                ),
+                                _buildAccountRows(
+                                  title: 'Terms & Conditions',
+                                  icon: AppIcons.terms,
+                                ),
+                                SizedBox(
+                                  height: 2.5.h,
+                                ),
+                                _buildAccountRows(
+                                  title: 'Support',
+                                  icon: AppIcons.support,
+                                ),
+                                SizedBox(
+                                  height: 4.h,
+                                ),
+                                _buildText(
+                                  title: 'My Account',
+                                  color: AppColors.grey,
+                                ),
+                                SizedBox(
+                                  height: 3.5.h,
+                                ),
+                                _buildText(
+                                  title: 'Change Password',
+                                  color: AppColors.primaryColor,
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                ),
+                                _buildText(
+                                  title: 'Logout',
+                                  color: AppColors.red,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       )
@@ -134,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            top: 10.h,
+            top: 8.h,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -183,7 +191,7 @@ class ProfileScreen extends StatelessWidget {
 
   Row _buildAccountRows({
     required String title,
-    required IconData icon,
+    required String icon,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -191,10 +199,10 @@ class ProfileScreen extends StatelessWidget {
         CircleAvatar(
           radius: 16,
           backgroundColor: AppColors.primaryColor,
-          child: Icon(
-            icon,
-            color: AppColors.white,
-            size: 18,
+          child: SizedBox(
+            height: 25,
+            width: 25,
+            child: SvgPicture.asset(icon),
           ),
         ),
         SizedBox(

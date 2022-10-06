@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/SearchScreen/search_screen.dart';
@@ -25,7 +27,12 @@ class TrifsAppBar extends StatelessWidget {
           onPressed: () {
             Get.to(() => SearchScreen());
           },
-          icon: Icon(Icons.search),
+          icon: SvgPicture.asset(
+            AppIcons.search,
+            color: AppColors.primaryColor,
+            width: 23,
+            height: 23,
+          ),
         ),
         Visibility(
           visible: isLocation,
@@ -35,7 +42,12 @@ class TrifsAppBar extends StatelessWidget {
             onPressed: () {
               _buildBottomSheet(context);
             },
-            icon: Icon(Icons.location_on_outlined),
+            icon: SvgPicture.asset(
+              AppIcons.locationExplore,
+              color: AppColors.primaryColor,
+              width: 25,
+              height: 25,
+            ),
           ),
         ),
       ],
@@ -82,9 +94,10 @@ class TrifsAppBar extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 8),
                         child: CircleAvatar(
                           backgroundColor: AppColors.primaryColor,
-                          child: Icon(
-                            Icons.search,
-                            color: AppColors.white,
+                          child: SvgPicture.asset(
+                            AppIcons.search,
+                            width: 20,
+                            height: 20,
                           ),
                         ),
                       ),
@@ -95,11 +108,7 @@ class TrifsAppBar extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(
-                      Icons.av_timer_rounded,
-                      color: AppColors.primaryColor,
-                      size: 20,
-                    ),
+                    SvgPicture.asset(AppIcons.detectLocation),
                     SizedBox(
                       width: 5,
                     ),
@@ -128,11 +137,7 @@ class TrifsAppBar extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.location_on_outlined,
-                                color: AppColors.black,
-                                size: 20,
-                              ),
+                              SvgPicture.asset(AppIcons.locationPin),
                               SizedBox(
                                 width: 5,
                               ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/category_slider.dart';
 import 'package:trifs_app/view/SearchScreen/components/promoted_search_agency.dart';
@@ -40,9 +42,11 @@ class SearchScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 8),
                           child: CircleAvatar(
                             backgroundColor: AppColors.primaryColor,
-                            child: Icon(
-                              Icons.search,
+                            child: SvgPicture.asset(
+                              AppIcons.search,
                               color: AppColors.white,
+                              width: 22,
+                              height: 22,
                             ),
                           ),
                         ),

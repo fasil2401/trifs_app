@@ -80,6 +80,14 @@ flutter:
     - assets/images/trifswitches/
     - assets/images/districts/
     - assets/icons/
+    - assets/icons/common/
+    - assets/icons/explore/
+    - assets/icons/location/
+    - assets/icons/profile/
+    - assets/icons/search/
+    - assets/icons/signin/
+    - assets/icons/signup/
+    - assets/icons/mainscreen/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

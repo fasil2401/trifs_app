@@ -5,10 +5,11 @@ class AppImages {
   static const String districtBase = '${base}districts/';
   static const String logo = '${base}trifs_logo.png';
   static const String loginLogo = '${base}trifs_logo_login.png';
-  static const String splashBackground = '${base}splash background.png';
+  static const String splashBackground = '${base}ss_bg.png';
   static const String loginBackground = '${base}login.jpg';
   static const String registerBackground = '${base}sign up.png';
   static const String homeBackground = '${base}background.jpg';
+  static const String profileBackground = '${base}pf_bg.png';
   static const String placeHolderSquare =
       '${placeHolderBase}noimage_square.jpeg';
   static const String placeHolderLandscape =
@@ -39,6 +40,14 @@ class AppImages {
 
 class AppIcons {
   static const String base = 'assets/icons/';
+  static const String commonBase = '${base}common/';
+  static const String exploreBase = '${base}explore/';
+  static const String locationBase = '${base}location/';
+  static const String profileBase = '${base}profile/';
+  static const String searchBase = '${base}search/';
+  static const String mainScreenBase = '${base}mainscreen/';
+  static const String signinBase = '${base}signin/';
+  static const String signupBase = '${base}signup/';
   static const String tours = '${base}tours.svg';
   static const String globaltravel = '${base}globaltravel.svg';
   static const String travel = '${base}travel.svg';
@@ -47,4 +56,43 @@ class AppIcons {
   static const String houseboat = '${base}houseboat.svg';
   static const String homestay = '${base}homestay.svg';
   static const String camping = '${base}camping.svg';
+  static const String commonSearch = '${commonBase}cmn_search_icon.svg';
+  static const String exploreSelected = '${commonBase}explore_slct_icon.svg';
+  static const String exploreUnselected = '${commonBase}explore_icon.svg';
+  static const String favoritesSelected =
+      '${commonBase}favourites_slct_icon.svg';
+  static const String favoritesUnselected = '${commonBase}favourites_icon.svg';
+  static const String homeSelected = '${commonBase}home_slct_icon.svg';
+  static const String homeUnselected = '${commonBase}home_icon.svg';
+  static const String profileSelected = '${commonBase}profile_slct_icon.svg';
+  static const String profileUnselected = '${commonBase}profile_icon.svg';
+  static const String offersSelected = '${commonBase}offers_slct_icon.svg';
+  static const String offersUnselected = '${commonBase}offers_icon.svg';
+  static const String premium = '${commonBase}premium_icon.svg';
+  static const String locationExplore = '${exploreBase}locex_icon.svg';
+  static const String searchExplore = '${exploreBase}searchex_icon.svg';
+  static const String detectLocation = '${locationBase}dtct_icon.svg';
+  static const String locationPin = '${locationBase}loc_loca_icon.svg';
+  static const String bookMyshow = '${mainScreenBase}bkmysh_switch_icon.svg';
+  static const String ola = '${mainScreenBase}ola_switch_icon.svg';
+  static const String oyo = '${mainScreenBase}oyo_switch_icon.svg';
+  static const String redbus = '${mainScreenBase}red_switch_icon.svg';
+  static const String swiggy = '${mainScreenBase}swiggy_switch_icon.svg';
+  static const String uber = '${mainScreenBase}uber_switch_icon.svg';
+  static const String zomato = '${mainScreenBase}zom_switch_icon.svg';
+  static const String zcharge = '${mainScreenBase}zcharge_switch_icon.svg';
+  static const String mainLocation = '${mainScreenBase}loc_icon.svg';
+  static const String mainSearch = '${mainScreenBase}search_icon.svg';
+  static const String about = '${profileBase}about_icon.svg';
+  static const String notification = '${profileBase}notif_icon.svg';
+  static const String privacy = '${profileBase}pvcy_icon.svg';
+  static const String support = '${profileBase}supp_icon.svg';
+  static const String terms = '${profileBase}tandc_icon.svg';
+  static const String search = '${searchBase}search_ss_icon.svg';
+  static const String signinLogo = '${signinBase}signin_logo.svg';
+  static const String signinPassword = '${signinBase}passin_icon.svg';
+  static const String signinMail = '${signinBase}emailin_icon.svg';
+  static const String signupMobile = '${signupBase}mobin_icon.svg';
+  static const String signupPassword = '${signupBase}passin_icon.svg';
+  static const String signupName = '${signupBase}namin_icon.svg';
 }

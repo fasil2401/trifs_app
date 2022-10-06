@@ -44,20 +44,14 @@ class SwitchesCard extends StatelessWidget {
     return Container(
       //padding: EdgeInsets.all(10),
       child: GestureDetector(
-        onTap: () {
-          print('trip switches clicked');
-          Get.toNamed('/trip-switches-webview', arguments: [
-            categoryList.url,
-            categoryList.title,
-          ]);
-        },
+        onTap: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               categoryList.image,
-              height: 10.w,
-              width: 10.h,
+              // height: 10.w,
+              // width: 10.h,
             ),
             SizedBox(
               height: 10,
