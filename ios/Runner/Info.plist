@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<!--//location start-->
-	 <key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
     <string>Need location when in use</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>Always and when in use!</string>
@@ -12,6 +12,12 @@
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Can I haz location always?</string>
 	<!--//location end-->
+	<!--//caller start-->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+  	<string>tel</string>
+	</array>
+	<!--//caller end-->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Home%20Screen/recomended_package_single.dart';
 
 List<int> list = [];
 
@@ -21,7 +23,7 @@ class MainPackageCardList extends StatelessWidget {
       ),
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
-          print('controller.packageData.value[index].agencyId');
+          Get.to(() => RecomendedPackageSingle());
         },
         child: Container(
           padding: EdgeInsets.all(8),
