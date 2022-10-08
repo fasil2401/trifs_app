@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
+import 'package:trifs_app/view/HouseBoatScreen/houseboat_package_single.dart';
 
 class DiscoverHouseBoatPackage extends StatelessWidget {
   DiscoverHouseBoatPackage({
@@ -16,7 +18,9 @@ class DiscoverHouseBoatPackage extends StatelessWidget {
         height: 10,
       ),
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => HouseBoatPackageSingle());
+        },
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Container(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
+import 'package:trifs_app/view/SearchScreen/search_screen.dart';
 
 class FixedTopNavigation extends StatelessWidget {
   const FixedTopNavigation({
@@ -30,45 +31,48 @@ class FixedTopNavigation extends StatelessWidget {
                   size: 20,
                 ),
               ),
-              GlassmorphicContainer(
-                width: 40,
-                height: 40,
-                border: 0,
-                blur: 10,
-                borderRadius: 50,
-                shape: BoxShape.circle,
-                linearGradient: LinearGradient(
+              InkWell(
+                onTap: () => Get.to(() => SearchScreen()),
+                child: GlassmorphicContainer(
+                  width: 40,
+                  height: 40,
+                  border: 0,
+                  blur: 10,
+                  borderRadius: 50,
+                  shape: BoxShape.circle,
+                  linearGradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFFFFFF),
+                        Color(0xFFFFFFF),
+                      ],
+                      stops: [
+                        0.3,
+                        1,
+                      ]),
+                  borderGradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFFFFFFF),
-                      Color(0xFFFFFFF),
+                      Color(0xFFFFFFF).withAlpha(01),
+                      Color(0xFFFFFFF).withAlpha(100),
+                      Color(0xFFFFFFF).withAlpha(01),
                     ],
                     stops: [
-                      0.3,
+                      0.2,
+                      0.9,
                       1,
-                    ]),
-                borderGradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFFFFFF).withAlpha(01),
-                    Color(0xFFFFFFF).withAlpha(100),
-                    Color(0xFFFFFFF).withAlpha(01),
-                  ],
-                  stops: [
-                    0.2,
-                    0.9,
-                    1,
-                  ],
+                    ],
+                  ),
+                  child: Center(
+                      child: SvgPicture.asset(
+                    AppIcons.search,
+                    color: Colors.black,
+                    width: 20,
+                    height: 20,
+                  )),
                 ),
-                child: Center(
-                    child: SvgPicture.asset(
-                  AppIcons.search,
-                  color: Colors.black,
-                  width: 20,
-                  height: 20,
-                )),
               )
             ],
           ),

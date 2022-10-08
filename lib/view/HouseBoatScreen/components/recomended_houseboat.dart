@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/HouseBoatScreen/houseboat_package_single.dart';
 
 class RecommendedHouseBoatPackages extends StatelessWidget {
   RecommendedHouseBoatPackages({
@@ -17,7 +19,9 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
         separatorBuilder: (context, index) => SizedBox(),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => HouseBoatPackageSingle());
+            },
             child: Padding(
               padding: EdgeInsets.only(left: 8),
               child: Container(

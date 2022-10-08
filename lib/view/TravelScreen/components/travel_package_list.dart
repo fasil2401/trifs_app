@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/TravelScreen/travel_package_single.dart';
 
 class TravelPackage extends StatelessWidget {
   TravelPackage({
@@ -17,7 +19,9 @@ class TravelPackage extends StatelessWidget {
         height: 10,
       ),
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => TravelPackageSingle());
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
