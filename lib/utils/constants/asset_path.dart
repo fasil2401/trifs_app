@@ -68,7 +68,7 @@ class AppIcons {
   static const String profileUnselected = '${commonBase}profile_icon.svg';
   static const String offersSelected = '${commonBase}offers_slct_icon.svg';
   static const String offersUnselected = '${commonBase}offers_icon.svg';
-  static const String premium = '${commonBase}premium_icon.svg';
+  static const String premium = '${commonBase}crown.svg';
   static const String locationExplore = '${exploreBase}locex_icon.svg';
   static const String searchExplore = '${exploreBase}searchex_icon.svg';
   static const String detectLocation = '${locationBase}dtct_icon.svg';

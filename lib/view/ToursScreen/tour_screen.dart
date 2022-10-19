@@ -4,6 +4,7 @@ import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/ToursScreen/components/staggered_gallery.dart';
+import 'package:trifs_app/view/ToursScreen/components/tour_packages_list.dart';
 import 'package:trifs_app/view/ToursScreen/components/tours_districts.dart';
 
 class TourScreen extends StatelessWidget {
@@ -52,6 +53,13 @@ class TourScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                CustomText.buildTitleText(
+                  title: 'Recommeneded Packages ',
+                ),
+                TourPackageCardList(),
+                SizedBox(
+                  height: 10,
+                ),
                 CustomText.buildTitleText(
                   title: 'Recommeneded Places',
                 ),

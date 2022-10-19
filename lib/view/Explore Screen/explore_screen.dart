@@ -3,6 +3,7 @@ import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/districts.dart';
+import 'package:trifs_app/view/Explore%20Screen/Components/explore_package_list.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/trending_slider.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -48,7 +49,14 @@ class ExploreScreen extends StatelessWidget {
                   CustomText.buildTitleText(
                     title: 'Trending Now',
                   ),
-                  TrendingSlider()
+                  TrendingSlider(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomText.buildTitleText(
+                    title: 'Recommended Packages',
+                  ),
+                  ExplorePackageCardList(),
                 ],
               ),
             )

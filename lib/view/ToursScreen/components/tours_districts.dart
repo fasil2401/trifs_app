@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trifs_app/utils/constants/common_list.dart';
+import 'package:trifs_app/view/Components/bottom_sheets.dart';
 
 class TourDistricts extends StatelessWidget {
   const TourDistricts({Key? key}) : super(key: key);
@@ -19,7 +20,9 @@ class TourDistricts extends StatelessWidget {
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.only(right: 12),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              AppBottomSheet.buildPackageSheet(context);
+            },
             child: Column(
               children: [
                 Container(

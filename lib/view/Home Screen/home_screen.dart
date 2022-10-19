@@ -7,6 +7,7 @@ import 'package:trifs_app/controller/app%20controls/location_controller.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/utils/constants/dummy_list.dart';
+import 'package:trifs_app/view/Components/bottom_sheets.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/main_package.dart';
@@ -340,11 +341,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Align(
         alignment: Alignment.topRight,
         child: InkWell(
-          // onTap: () => locationController.getCurrentLocation(),
+          onTap: () => AppBottomSheet.buildLocationSheet(context),
           child: GlassmorphicContainer(
               alignment: Alignment.centerRight,
               width: 160,
-              height: 35,
+              height: 35,   
               border: 0,
               blur: 10,
               borderRadius: 50,

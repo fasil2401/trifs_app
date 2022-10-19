@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/Components/bottom_sheets.dart';
 
 class AgencySingleTile extends StatelessWidget {
   const AgencySingleTile({
@@ -11,6 +12,9 @@ class AgencySingleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        AppBottomSheet.buildAgencySheet(context);
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
