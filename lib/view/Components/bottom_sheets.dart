@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/controller/app%20controls/location_controller.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/category_slider.dart';
@@ -10,6 +12,8 @@ import 'package:trifs_app/view/Components/single_bottom_switch.dart';
 import 'package:trifs_app/view/ToursScreen/components/tour_packages_list.dart';
 
 class AppBottomSheet {
+  static final locationController = Get.put(LocationController());
+
   static Future<dynamic> buildLocationSheet(BuildContext context) {
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -41,7 +45,7 @@ class AppBottomSheet {
                 TextFormField(
                   decoration: InputDecoration(
                       filled: true,
-                      hintText: 'Search Location',
+                      hintText: 'Search Pincode',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
@@ -58,6 +62,14 @@ class AppBottomSheet {
                         ),
                       ),
                       fillColor: AppColors.lightGrey),
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                  onChanged: (value) {
+                    locationController.searchPincode(value);
+                  },
+                  onFieldSubmitted: (value) =>
+                      locationController.searchPincode(value),
+                  // onSaved: (value) => locationController.searchPincode(value!),
                 ),
                 SizedBox(
                   height: 10,
@@ -79,41 +91,61 @@ class AppBottomSheet {
                 SizedBox(
                   height: 10,
                 ),
-                Expanded(
-                    child: ListView.builder(
-                  itemCount: 30,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Divider(
-                          color: AppColors.lightGrey,
-                          height: 0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(AppIcons.locationPin),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                'Kozhikode Rec, Kozhikode',
-                                style: TextStyle(
-                                  color: AppColors.black,
+                Obx(() => Expanded(
+                      child: locationController.isLoading.value
+                          ? Align(
+                              alignment: Alignment.topCenter,
+                              child: GFLoader(type: GFLoaderType.circle),
+                            )
+                          : locationController.pincodes.isEmpty
+                              ? Align(
+                                  alignment: Alignment.topCenter,
+                                  child: CustomText.buildPackageTitle(
+                                      title: 'No Location Found'),
+                                )
+                              : ListView.builder(
+                                  itemCount: locationController.pincodes.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        locationController.setLocation(
+                                            locationController.pincodes[index]);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Divider(
+                                            color: AppColors.lightGrey,
+                                            height: 0,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            child: Row(
+                                              children: [
+                                                SvgPicture.asset(
+                                                    AppIcons.locationPin),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  '${locationController.pincodes[index].city}, ${locationController.pincodes[index].district}',
+                                                  style: TextStyle(
+                                                    color: AppColors.black,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            color: AppColors.lightGrey,
+                                            height: 0,
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: AppColors.lightGrey,
-                          height: 0,
-                        ),
-                      ],
-                    );
-                  },
-                ))
+                    ))
               ],
             ),
           ),

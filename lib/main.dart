@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/utils/User%20Preferences/user_preference.dart';
 import 'package:trifs_app/utils/routes/route_manager.dart';
 import 'utils/themes/theme_provider.dart';
 
-void main() {
+void main() async{
+   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  await UserSimplePreferences.init();
   runApp(const MyApp());
 }
 

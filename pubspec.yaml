@@ -46,6 +46,7 @@ dependencies:
   geocoding: ^2.0.5
   geolocator: ^9.0.2
   flutter_phone_direct_caller: ^2.1.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
