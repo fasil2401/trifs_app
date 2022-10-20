@@ -47,7 +47,6 @@ class LocationController extends GetxController {
   }
 
   getSearchPincode() async {
-    print('getSearchPincode');
     var result;
     try {
       isLoading.value = true;

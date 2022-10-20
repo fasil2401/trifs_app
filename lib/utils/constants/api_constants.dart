@@ -3,4 +3,5 @@ class Api {
   static const String register = 'customer/register';
   static const String login = 'customer/login';
   static const String searchPincode = 'search/pincode';
+  static const String places = 'places';
 }
