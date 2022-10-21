@@ -425,7 +425,7 @@ class HouseBoatPackageSingle extends StatelessWidget {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               4),
-                                                      child: GalleryTIle(),
+                                                      child: GalleryTIle(imageUrl: '',),
                                                     );
                                                   },
                                                 ),

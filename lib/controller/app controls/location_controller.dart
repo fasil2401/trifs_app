@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:trifs_app/Services/api_services.dart';
+import 'package:trifs_app/controller/app%20controls/explore_controller.dart';
 import 'package:trifs_app/model/search_pincode_model.dart';
 import 'package:trifs_app/utils/User%20Preferences/user_preference.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
@@ -13,6 +14,7 @@ class LocationController extends GetxController {
     getCurrentLocation();
   }
 
+  final exploreController = Get.find<ExploreController>();
   var isLoading = false.obs;
   var status = ''.obs;
   var message = ''.obs;
@@ -43,6 +45,7 @@ class LocationController extends GetxController {
     await UserSimplePreferences.setPincode(pincode.pincode!);
     await UserSimplePreferences.setDistrict(pincode.district!);
     await UserSimplePreferences.setState(pincode.state!);
+    exploreController.getPlaces();
     Get.back();
   }
 

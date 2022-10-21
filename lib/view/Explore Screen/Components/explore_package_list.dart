@@ -24,7 +24,7 @@ class ExplorePackageCardList extends StatelessWidget {
       ),
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
-          Get.to(() => ExplorePackageSingle());
+          // Get.to(() => ExplorePackageSingle());
         },
         child: Container(
           padding: EdgeInsets.all(8),

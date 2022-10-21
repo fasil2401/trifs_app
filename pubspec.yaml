@@ -48,6 +48,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   shared_preferences: ^2.0.15
   cached_network_image: ^3.2.2
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

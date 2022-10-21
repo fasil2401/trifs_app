@@ -317,7 +317,7 @@ class TourPackageSingle extends StatelessWidget {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               4),
-                                                      child: GalleryTIle(),
+                                                      child: GalleryTIle(imageUrl: '',),
                                                     );
                                                   },
                                                 ),
