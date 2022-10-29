@@ -66,6 +66,7 @@ class KeralaWidget extends StatelessWidget {
                         loaderColorOne: AppColors.primaryColor,
                         loaderColorTwo: AppColors.primaryColor,
                         loaderColorThree: AppColors.primaryColor,
+                        size: 20,
                       ),
                     ),
                   ),
