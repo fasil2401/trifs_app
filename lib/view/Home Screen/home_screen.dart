@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               asset: AppIcons.houseboat,
                               title: 'House Boat',
                               onTap: () {
-                                Get.to(() => const HouseBoatScreen());
+                                Get.to(() => HouseBoatScreen());
                               },
                               comingSoon: false,
                             ),
@@ -345,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: GlassmorphicContainer(
               alignment: Alignment.centerRight,
               width: 160,
-              height: 35,   
+              height: 35,
               border: 0,
               blur: 10,
               borderRadius: 50,

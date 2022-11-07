@@ -7,8 +7,6 @@ import 'package:trifs_app/controller/app%20controls/explore_controller.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
-import 'package:trifs_app/utils/constants/common_list.dart';
-import 'package:trifs_app/view/Explore%20Screen/Components/explore_package_single.dart';
 
 class KeralaWidget extends StatelessWidget {
   KeralaWidget({

@@ -1,13 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trifs_app/utils/app_calculations.dart';
+import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/Components/loader.dart';
 import 'package:trifs_app/view/HouseBoatScreen/houseboat_package_single.dart';
 
 class RecommendedHouseBoatPackages extends StatelessWidget {
   RecommendedHouseBoatPackages({
     Key? key,
+    required this.houseboats,
   }) : super(key: key);
+
+  List<dynamic> houseboats = [];
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +22,12 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
       height: 207,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: houseboats.length,
         separatorBuilder: (context, index) => SizedBox(),
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.to(() => HouseBoatPackageSingle());
+              // Get.to(() => HouseBoatPackageSingle());
             },
             child: Padding(
               padding: EdgeInsets.only(left: 8),
@@ -39,12 +46,28 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(
-                            AppImages.placeHolderLandscape,
-                            fit: BoxFit.cover,
-                            width: 1000,
-                          )),
+                        borderRadius: BorderRadius.circular(15),
+                        child: CachedNetworkImage(
+                          imageUrl: '${Api.imageUrl}${houseboats[index].image}',
+                          // height: 10.h,
+                          errorWidget: (context, url, error) => Container(
+                            // height: 10.h,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  AppImages.placeHolderLandscape,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                              color: AppColors.lightGrey,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          placeholder: (context, url) => Align(
+                              alignment: Alignment.center,
+                              child: AppLoader.imageLoader()),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 10,
@@ -61,7 +84,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 child: Text(
-                                  'River Woods',
+                                  houseboats[index].name,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(fontSize: 20),
@@ -81,7 +104,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                                     width:
                                         MediaQuery.of(context).size.width * 0.3,
                                     child: Text(
-                                      'Wayanad',
+                                      houseboats[index].district,
                                       style: TextStyle(
                                           fontSize: 14,
                                           color: AppColors.green,
@@ -96,7 +119,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                '₹1000',
+                                '₹${houseboats[index].offerAmount}',
                                 style: TextStyle(
                                     fontFamily: 'Lato',
                                     fontSize: 18,
@@ -104,7 +127,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                                     color: AppColors.primaryColor),
                               ),
                               Text(
-                                '₹1500',
+                                '₹${houseboats[index].budget}',
                                 style: TextStyle(
                                     color: AppColors.grey,
                                     fontSize: 12,
@@ -116,7 +139,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                                 width: 5,
                               ),
                               Text(
-                                '20%Off',
+                                '${AppCalculations.calculateOfferPercentage(price: houseboats[index].budget, offerPrice: houseboats[index].offerAmount).toString()}%Off',
                                 style: TextStyle(
                                     fontFamily: 'Lato',
                                     fontSize: 12,
