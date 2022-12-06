@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trifs_app/controller/app%20controls/house_boat_controller.dart';
 import 'package:trifs_app/utils/app_calculations.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
@@ -16,6 +17,8 @@ class DiscoverHouseBoatPackage extends StatelessWidget {
 
   List<dynamic> houseboats = [];
 
+  final houseBoatController = Get.put(HouseBoatController());
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -27,8 +30,7 @@ class DiscoverHouseBoatPackage extends StatelessWidget {
       ),
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
-          // Get.to(() => HouseBoatPackageSingle());
-          print(houseboats[index].image);
+          houseBoatController.getSingleHouseBoat(houseboats[index].id);
         },
         child: Padding(
           padding: EdgeInsets.all(8.0),

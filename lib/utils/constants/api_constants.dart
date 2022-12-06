@@ -6,5 +6,6 @@ class Api {
   static const String searchPincode = 'search/pincode';
   static const String places = 'places';
   static const String houseboat = 'houseboat';
+  static const String travels = 'travels';
   static const String agency = 'agency';
 }

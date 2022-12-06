@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trifs_app/controller/app%20controls/house_boat_controller.dart';
 import 'package:trifs_app/utils/app_calculations.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
@@ -13,7 +14,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
     Key? key,
     required this.houseboats,
   }) : super(key: key);
-
+  final houseBoatController = Get.put(HouseBoatController());
   List<dynamic> houseboats = [];
 
   @override
@@ -28,6 +29,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               // Get.to(() => HouseBoatPackageSingle());
+              houseBoatController.getSingleHouseBoat(houseboats[index].id);
             },
             child: Padding(
               padding: EdgeInsets.only(left: 8),
@@ -50,6 +52,7 @@ class RecommendedHouseBoatPackages extends StatelessWidget {
                         child: CachedNetworkImage(
                           imageUrl: '${Api.imageUrl}${houseboats[index].image}',
                           // height: 10.h,
+                          fit: BoxFit.cover,
                           errorWidget: (context, url, error) => Container(
                             // height: 10.h,
                             decoration: BoxDecoration(

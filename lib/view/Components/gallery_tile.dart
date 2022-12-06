@@ -33,10 +33,11 @@ class GalleryTIle extends StatelessWidget {
       ),
       placeholder: (context, url) => Align(
         alignment: Alignment.center,
-        child: GFLoader(type: GFLoaderType.circle,
-        loaderColorOne: AppColors.primaryColor,
-              loaderColorTwo: AppColors.primaryColor,
-              loaderColorThree: AppColors.primaryColor,
+        child: GFLoader(
+          type: GFLoaderType.circle,
+          loaderColorOne: AppColors.primaryColor,
+          loaderColorTwo: AppColors.primaryColor,
+          loaderColorThree: AppColors.primaryColor,
         ),
       ),
     );

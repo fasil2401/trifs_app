@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               asset: AppIcons.travel,
                               title: 'Travel',
                               onTap: () {
-                                Get.to(() => const TravelScreen());
+                                Get.to(() => TravelScreen());
                               },
                               comingSoon: false,
                             )

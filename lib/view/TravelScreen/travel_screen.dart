@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:trifs_app/controller/app%20controls/travels_controller.dart';
 import 'package:trifs_app/utils/constants/dummy_list.dart';
 import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Components/shimmer.dart';
 import 'package:trifs_app/view/TravelScreen/components/travel_package_list.dart';
 import 'package:trifs_app/view/TravelScreen/components/vehicle_category_slider.dart';
 
 class TravelScreen extends StatelessWidget {
-  const TravelScreen({Key? key}) : super(key: key);
+  TravelScreen({Key? key}) : super(key: key);
+  final travelsController = Get.put(TravelsController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,9 @@ class TravelScreen extends StatelessWidget {
                 CustomText.buildTitleText(
                   title: 'Vehicles in Ollur...',
                 ),
-                TravelPackage()
+                Obx(() => travelsController.isLoading.value
+                      ? AppShimmer.buildPackageVertShimmer()
+                      : TravelPackage())
               ],
             ),
           )

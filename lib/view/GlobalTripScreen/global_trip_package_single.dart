@@ -9,6 +9,8 @@ import 'package:trifs_app/view/Components/single_bottom_switch.dart';
 import 'package:trifs_app/view/Components/single_top_navigation.dart';
 import 'package:trifs_app/view/Components/vodcast_tile.dart';
 
+import '../../model/Agency Model/agency_model.dart';
+
 class GlobalTripPackageSingle extends StatelessWidget {
   GlobalTripPackageSingle({Key? key}) : super(key: key);
 
@@ -317,7 +319,9 @@ class GlobalTripPackageSingle extends StatelessWidget {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               4),
-                                                      child: GalleryTIle(imageUrl: '',),
+                                                      child: GalleryTIle(
+                                                        imageUrl: '',
+                                                      ),
                                                     );
                                                   },
                                                 ),

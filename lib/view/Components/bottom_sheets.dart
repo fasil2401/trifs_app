@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/controller/app%20controls/location_controller.dart';
+import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
 import 'package:trifs_app/view/Components/category_slider.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Components/loader.dart';
 import 'package:trifs_app/view/Components/single_bottom_switch.dart';
 import 'package:trifs_app/view/ToursScreen/components/tour_packages_list.dart';
 
@@ -28,7 +31,9 @@ class AppBottomSheet {
           height: 70.h,
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -37,31 +42,34 @@ class AppBottomSheet {
                 ),
                 Align(
                   alignment: Alignment.center,
-                  child: CustomText.buildPackageTitle(title: 'Select Location'),
+                  child: CustomText.buildPackageTitle(
+                    title: 'Select Location',
+                  ),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      filled: true,
-                      hintText: 'Search Pincode',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide.none,
-                      ),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: CircleAvatar(
-                          backgroundColor: AppColors.primaryColor,
-                          child: SvgPicture.asset(
-                            AppIcons.search,
-                            width: 20,
-                            height: 20,
-                          ),
+                    filled: true,
+                    hintText: 'Search Pincode',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.primaryColor,
+                        child: SvgPicture.asset(
+                          AppIcons.search,
+                          width: 20,
+                          height: 20,
                         ),
                       ),
-                      fillColor: AppColors.lightGrey),
+                    ),
+                    fillColor: AppColors.lightGrey,
+                  ),
                   keyboardType: TextInputType.number,
                   maxLength: 6,
                   onChanged: (value) {
@@ -91,61 +99,67 @@ class AppBottomSheet {
                 SizedBox(
                   height: 10,
                 ),
-                Obx(() => Expanded(
-                      child: locationController.isLoading.value
-                          ? Align(
-                              alignment: Alignment.topCenter,
-                              child: GFLoader(type: GFLoaderType.circle),
-                            )
-                          : locationController.pincodes.isEmpty
-                              ? Align(
-                                  alignment: Alignment.topCenter,
-                                  child: CustomText.buildPackageTitle(
-                                      title: 'No Location Found'),
-                                )
-                              : ListView.builder(
-                                  itemCount: locationController.pincodes.length,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        locationController.setLocation(
-                                            locationController.pincodes[index]);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Divider(
-                                            color: AppColors.lightGrey,
-                                            height: 0,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child: Row(
-                                              children: [
-                                                SvgPicture.asset(
-                                                    AppIcons.locationPin),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  '${locationController.pincodes[index].city}, ${locationController.pincodes[index].district}',
-                                                  style: TextStyle(
-                                                    color: AppColors.black,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Divider(
-                                            color: AppColors.lightGrey,
-                                            height: 0,
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
+                Obx(
+                  () => Expanded(
+                    child: locationController.isLoading.value
+                        ? Align(
+                            alignment: Alignment.topCenter,
+                            child: GFLoader(type: GFLoaderType.circle),
+                          )
+                        : locationController.pincodes.isEmpty
+                            ? Align(
+                                alignment: Alignment.topCenter,
+                                child: CustomText.buildPackageTitle(
+                                  title: 'No Location Found',
                                 ),
-                    ))
+                              )
+                            : ListView.builder(
+                                itemCount: locationController.pincodes.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      locationController.setLocation(
+                                        locationController.pincodes[index],
+                                      );
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Divider(
+                                          color: AppColors.lightGrey,
+                                          height: 0,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 10,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                AppIcons.locationPin,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                '${locationController.pincodes[index].city}, ${locationController.pincodes[index].district}',
+                                                style: TextStyle(
+                                                  color: AppColors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Divider(
+                                          color: AppColors.lightGrey,
+                                          height: 0,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -154,7 +168,14 @@ class AppBottomSheet {
     );
   }
 
-  static Future<dynamic> buildAgencySheet(BuildContext context) {
+  static Future<dynamic> buildAgencySheet(
+      {required BuildContext context,
+      required String name,
+      required String image,
+      required String license,
+      required String address,
+      required String phone,
+      required bool isPremium}) {
     return showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
@@ -180,7 +201,7 @@ class AppBottomSheet {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Anshaj Travels',
+                        name,
                         style: TextStyle(
                           color: AppColors.black,
                           fontSize: 14,
@@ -202,13 +223,32 @@ class AppBottomSheet {
                   SizedBox(
                     height: 5,
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      AppImages.placeHolderLandscape,
-                      width: double.infinity,
-                      height: 16.h,
-                      fit: BoxFit.cover,
+                  Container(
+                    width: double.infinity,
+                    height: 16.h,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: '${Api.imageUrl}${image}',
+                        // height: 10.h,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => Container(
+                          // height: 10.h,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                AppImages.placeHolderLandscape,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                            color: AppColors.lightGrey,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        placeholder: (context, url) => Align(
+                            alignment: Alignment.center,
+                            child: AppLoader.imageLoader()),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -234,22 +274,21 @@ class AppBottomSheet {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                      '42, 1st P.K Commercial Complex, 776, Cherooty Rd, Kozhikode, Kerala 673032'),
+                  Text(address),
                   SizedBox(
                     height: 10,
                   ),
-                  Text('License experied date : 22/09/2022'),
+                  Text('License experied date : ${license}'),
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    'Listed Packages by Anshaj Travels >',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   'Listed Packages by Anshaj Travels >',
+                  //   style: TextStyle(
+                  //     color: AppColors.primaryColor,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 10,
                   ),

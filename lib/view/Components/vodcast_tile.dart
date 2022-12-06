@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/model/video_list_model.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 
 class VodcastTile extends StatelessWidget {
-  const VodcastTile({
+   VodcastTile({
     Key? key,
+    this.videoUrl = '',
   }) : super(key: key);
+
+ String videoUrl ;
 
   @override
   Widget build(BuildContext context) {

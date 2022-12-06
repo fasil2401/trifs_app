@@ -1,22 +1,28 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:trifs_app/controller/app%20controls/house_boat_controller.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/Components/bottom_sheets.dart';
 import 'package:trifs_app/view/Components/loader.dart';
 
 class PromotedAgencySlider extends StatelessWidget {
   PromotedAgencySlider({Key? key, required this.agencies}) : super(key: key);
+
+  final houseBoatController = Get.put(HouseBoatController());
 
   List<dynamic> agencies = [];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * 0.18,
-        child: ListView.separated(
+      height: MediaQuery.of(context).size.height * 0.18,
+      child: Obx(
+        () => ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemCount: agencies.length,
+          itemCount: houseBoatController.agencies.length,
           // itemCount: 1,
           separatorBuilder: (context, index) => SizedBox(
             width: 4,
@@ -26,6 +32,14 @@ class PromotedAgencySlider extends StatelessWidget {
               onTap: () {
                 // Get.to(() => HouseBoatPackageSingle());
                 print(agencies[index].logo);
+                AppBottomSheet.buildAgencySheet(
+                    context: context,
+                    name: agencies[index].name,
+                    address: agencies[index].address,
+                    license: agencies[index].lisenceExpiry.toString(),
+                    image: agencies[index].logo,
+                    phone: agencies[index].phone,
+                    isPremium: true);
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -38,7 +52,8 @@ class PromotedAgencySlider extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(40),
                           child: CachedNetworkImage(
-                            imageUrl: '${Api.imageUrl}${agencies[index].logo}',
+                            imageUrl:
+                                '${Api.imageUrl}${houseBoatController.agencies[index].logo}',
                             // height: 10.h,
                             errorWidget: (context, url, error) => Container(
                               // height: 10.h,
@@ -65,7 +80,7 @@ class PromotedAgencySlider extends StatelessWidget {
                       SizedBox(
                         width: 80,
                         child: Text(
-                          agencies[index].name,
+                          houseBoatController.agencies[index].name,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -77,6 +92,8 @@ class PromotedAgencySlider extends StatelessWidget {
               ),
             );
           },
-        ));
+        ),
+      ),
+    );
   }
 }

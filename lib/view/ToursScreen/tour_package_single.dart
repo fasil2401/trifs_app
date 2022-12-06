@@ -9,6 +9,8 @@ import 'package:trifs_app/view/Components/single_bottom_switch.dart';
 import 'package:trifs_app/view/Components/single_top_navigation.dart';
 import 'package:trifs_app/view/Components/vodcast_tile.dart';
 
+import '../../model/Agency Model/agency_model.dart';
+
 class TourPackageSingle extends StatelessWidget {
   TourPackageSingle({Key? key}) : super(key: key);
 

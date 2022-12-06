@@ -5,29 +5,31 @@ import 'package:trifs_app/model/Agency%20Model/agency_model.dart'
     as agencyModel;
 import 'package:trifs_app/model/Explore%20Model/gallery_model.dart';
 import 'package:trifs_app/model/Explore%20Model/list_places_model.dart';
-import 'package:trifs_app/model/House%20Boat%20Model/house_boat_single_model.dart'
-    as single;
 import 'package:trifs_app/model/House%20Boat%20Model/list_house_boat_model.dart';
+import 'package:trifs_app/model/Travels%20Model/travels_list_model.dart';
 import 'package:trifs_app/model/video_list_model.dart';
 import 'package:trifs_app/utils/User%20Preferences/user_preference.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/explore_package_single.dart';
 import 'package:trifs_app/view/HouseBoatScreen/houseboat_package_single.dart';
+import 'package:trifs_app/view/TravelScreen/travel_package_single.dart';
 
-class HouseBoatController extends GetxController {
+import '../../model/Travels Model/travels_single_model.dart' as single;
+
+class TravelsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getHouseBoats();
+    getTravelsList();
   }
 
   var isLoading = false.obs;
   var status = ''.obs;
   var message = ''.obs;
-  var houseBoats = [].obs;
-  var houseBoat = single.Houseboats(createdAt: DateTime.now()).obs;
+  var travelsList = [].obs;
+  var travels = single.Travel().obs;
   var agencies = [].obs;
-  var agency = single.Agency(createdAt: DateTime.now()).obs;
+  var agency = single.Agency().obs;
   var imageList = [].obs;
   var videoList = [].obs;
 
@@ -37,25 +39,24 @@ class HouseBoatController extends GetxController {
     };
   }
 
-  getHouseBoats() async {
-    print('getHouseBoats');
+  getTravelsList() async {
+    print('getTravelsList');
     var result;
     try {
       isLoading.value = true;
       var feedback = await ApiManager.fetchData(
-        api: Api.houseboat,
+        api: Api.travels,
       );
       if (feedback != null) {
-        result = ListHouseBoatModel.fromJson(feedback);
+        result = TavelsListModel.fromJson(feedback);
         status.value = result.sts;
         message.value = result.msg;
-        developer.log(result.houseboats.toString(), name: 'API DATA');
+        developer.log(result.travels.toString(), name: 'API DATA');
       } else {}
     } finally {
-      getAgencies();
       if (status.value == '01') {
         isLoading.value = false;
-        houseBoats.value = result.houseboats;
+        travelsList.value = result.travels;
       } else {
         isLoading.value = false;
         Get.snackbar(
@@ -68,49 +69,49 @@ class HouseBoatController extends GetxController {
     }
   }
 
-  getAgencies() async {
-    print('getAgencies');
-    var result;
-    try {
-      isLoading.value = true;
-      var feedback =
-          await ApiManager.fetchData(api: Api.agency, params: generateParams());
-      if (feedback != null) {
-        result = agencyModel.ListAgencyModel.fromJson(feedback);
-        status.value = result.sts;
-        message.value = result.msg;
-        developer.log(result.agency.toString(), name: 'API DATA');
-      } else {}
-    } finally {
-      if (status.value == '01') {
-        isLoading.value = false;
-        agencies.value = result.agency;
-      } else {
-        isLoading.value = false;
-        Get.snackbar(
-          'Error',
-          message.value,
-          snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(seconds: 1),
-        );
-      }
-    }
-  }
+  // getAgencies() async {
+  //   print('getAgencies');
+  //   var result;
+  //   try {
+  //     isLoading.value = true;
+  //     var feedback =
+  //         await ApiManager.fetchData(api: Api.agency, params: generateParams());
+  //     if (feedback != null) {
+  //       result = agencyModel.ListAgencyModel.fromJson(feedback);
+  //       status.value = result.sts;
+  //       message.value = result.msg;
+  //       developer.log(result.agency.toString(), name: 'API DATA');
+  //     } else {}
+  //   } finally {
+  //     if (status.value == '01') {
+  //       isLoading.value = false;
+  //       agencies.value = result.agency;
+  //     } else {
+  //       isLoading.value = false;
+  //       Get.snackbar(
+  //         'Error',
+  //         message.value,
+  //         snackPosition: SnackPosition.BOTTOM,
+  //         duration: Duration(seconds: 1),
+  //       );
+  //     }
+  //   }
+  // }
 
-  getSingleHouseBoat(int id) async {
+  getSingleTravels(int id) async {
     isLoading.value = true;
     print('ID: $id');
-    Get.to(() => HouseBoatPackageSingle());
+    Get.to(() => TravelPackageSingle());
     var result;
     try {
-      var feedback = await ApiManager.fetchData(api: '${Api.houseboat}/$id');
+      var feedback = await ApiManager.fetchData(api: '${Api.travels}/$id');
       if (feedback != null) {
-        result = single.SingleHouseBoatModel.fromJson(feedback);
+        result = single.TravelsSingleModel.fromJson(feedback);
         status.value = result.sts;
         message.value = result.msg;
-        houseBoat.value = result.houseboats;
+        travels.value = result.travel;
         agency.value = result.agency;
-        await getSingleHouseBoatVideos(id);
+        await getSingleTravelsVideos(id);
         developer.log(agency.value.name.toString(), name: 'Agency NAme');
       } else {}
     } finally {
@@ -130,12 +131,12 @@ class HouseBoatController extends GetxController {
     }
   }
 
-  getSingleHouseBoatGallery(int id) async {
+  getSingleTravelsGallery(int id) async {
     // isLoading.value = true;
     var result;
     try {
       var feedback =
-          await ApiManager.fetchData(api: '${Api.houseboat}/gallery/$id');
+          await ApiManager.fetchData(api: '${Api.travels}/gallery/$id');
       if (feedback != null) {
         result = ExploreGalleryModel.fromJson(feedback);
         status.value = result.sts;
@@ -160,18 +161,18 @@ class HouseBoatController extends GetxController {
     }
   }
 
-  getSingleHouseBoatVideos(int id) async {
-    print('getSingleHouseBoatVideos($id)');
+  getSingleTravelsVideos(int id) async {
+    print('getSingleVideos($id)');
     // isLoading.value = true;
     var result;
     try {
       var feedback =
-          await ApiManager.fetchData(api: '${Api.houseboat}/videos/$id');
+          await ApiManager.fetchData(api: '${Api.travels}/videos/$id');
       if (feedback != null) {
         result = VideoListModel.fromJson(feedback);
         status.value = result.sts;
         message.value = result.msg;
-        getSingleHouseBoatGallery(id);
+        getSingleTravelsGallery(id);
       } else {}
     } finally {
       if (status.value == '01') {
