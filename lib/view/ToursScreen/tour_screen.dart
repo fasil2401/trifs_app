@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:trifs_app/controller/app%20controls/tour_controller.dart';
 import 'package:trifs_app/utils/constants/dummy_list.dart';
 import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Components/shimmer.dart';
 import 'package:trifs_app/view/ToursScreen/components/staggered_gallery.dart';
 import 'package:trifs_app/view/ToursScreen/components/tour_packages_list.dart';
 import 'package:trifs_app/view/ToursScreen/components/tours_districts.dart';
 
 class TourScreen extends StatelessWidget {
-  const TourScreen({Key? key}) : super(key: key);
+  TourScreen({Key? key}) : super(key: key);
+
+  final tourPackageController = Get.put(TourController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,9 @@ class TourScreen extends StatelessWidget {
                 CustomText.buildTitleText(
                   title: 'Recommeneded Packages ',
                 ),
-                TourPackageCardList(),
+                Obx(() => tourPackageController.isLoading.value
+                    ? AppShimmer.buildPackageVertShimmer()
+                    : TourPackageCardList()),
                 SizedBox(
                   height: 10,
                 ),

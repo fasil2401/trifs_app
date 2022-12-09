@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               asset: AppIcons.tours,
                               title: 'Tours',
                               onTap: () {
-                                Get.to(() => const TourScreen());
+                                Get.to(() =>  TourScreen());
                               },
                               comingSoon: false,
                             ),

@@ -8,4 +8,5 @@ class Api {
   static const String houseboat = 'houseboat';
   static const String travels = 'travels';
   static const String agency = 'agency';
+  static const String packages = 'packages';
 }
