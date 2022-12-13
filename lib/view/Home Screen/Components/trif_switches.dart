@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
+import 'package:trifs_app/view/Components/webview_page.dart';
 
 class Switches extends StatelessWidget {
   Switches({
@@ -44,7 +45,10 @@ class SwitchesCard extends StatelessWidget {
     return Container(
       //padding: EdgeInsets.all(10),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => WebViewSinglePage(
+              name: categoryList.title, url: categoryList.url));
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

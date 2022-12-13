@@ -1,7 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/controller/app%20controls/home_controller.dart';
+import 'package:trifs_app/utils/constants/api_constants.dart';
+import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
+import 'package:trifs_app/view/Components/loader.dart';
 
 class PromotedCarousel extends StatefulWidget {
   const PromotedCarousel({super.key, required this.imageList});
@@ -62,21 +68,24 @@ class _PromotedCarouselState extends State<PromotedCarousel> {
 }
 
 class EnlargingCarousel extends StatefulWidget {
-  const EnlargingCarousel({super.key, required this.imageList});
-final List<String> imageList;
+  const EnlargingCarousel({
+    super.key,
+  });
+
   @override
   State<EnlargingCarousel> createState() => _EnlargingCarouselState();
 }
 
 class _EnlargingCarouselState extends State<EnlargingCarousel> {
+  final HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return GFCarousel(
       aspectRatio: 18 / 9,
       viewportFraction: 0.6,
       enlargeMainPage: true,
-      items: widget.imageList.map(
-        (url) {
+      items: homeController.places.map(
+        (place) {
           return Stack(
             children: [
               Container(
@@ -94,9 +103,32 @@ class _EnlargingCarouselState extends State<EnlargingCarousel> {
                       margin: EdgeInsets.all(4.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.fill,
+                        // image: DecorationImage(
+                        //   image: NetworkImage(url),
+                        //   fit: BoxFit.fill,
+                        // ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: CachedNetworkImage(
+                          imageUrl: '${Api.imageUrl}${place.image}',
+                          // height: 10.h,
+                          errorWidget: (context, url, error) => Container(
+                            // height: 10.h,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  AppImages.placeHolderLandscape,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                              color: AppColors.lightGrey,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          placeholder: (context, url) => Align(
+                              alignment: Alignment.center,
+                              child: AppLoader.imageLoader()),
                         ),
                       ),
                     ),
@@ -108,7 +140,8 @@ class _EnlargingCarouselState extends State<EnlargingCarousel> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: SizedBox(
-                      child: Text('Bhothan Kadu',
+                      child: Text(place.name,
+                          overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: AppColors.black,
@@ -128,7 +161,6 @@ class _EnlargingCarouselState extends State<EnlargingCarousel> {
     );
   }
 }
-
 
 class ExploreCarousel extends StatefulWidget {
   const ExploreCarousel({
@@ -165,8 +197,7 @@ class _ExploreCarouselState extends State<ExploreCarousel> {
                 alignment: Alignment.bottomLeft,
                 child: Container(
                   margin: EdgeInsets.only(bottom: 15.0, left: 8.0),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                   decoration: BoxDecoration(
                     color: AppColors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.only(
@@ -194,4 +225,3 @@ class _ExploreCarouselState extends State<ExploreCarousel> {
     );
   }
 }
-

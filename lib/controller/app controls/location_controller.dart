@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:trifs_app/Services/api_services.dart';
 import 'package:trifs_app/controller/app%20controls/explore_controller.dart';
+import 'package:trifs_app/controller/app%20controls/home_controller.dart';
 import 'package:trifs_app/model/search_pincode_model.dart';
 import 'package:trifs_app/utils/User%20Preferences/user_preference.dart';
 import 'package:trifs_app/utils/constants/api_constants.dart';
@@ -11,10 +12,12 @@ class LocationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    homeController.isPlacesLoading.value = true;
     getCurrentLocation();
   }
 
   final exploreController = Get.find<ExploreController>();
+  final homeController = Get.put(HomeController());
   var isLoading = false.obs;
   var status = ''.obs;
   var message = ''.obs;
@@ -127,5 +130,6 @@ class LocationController extends GetxController {
     Position position = await _determinePosition();
     print(position.latitude);
     await getAddressFromLocation(position);
+    homeController.getNearByPlaces();
   }
 }

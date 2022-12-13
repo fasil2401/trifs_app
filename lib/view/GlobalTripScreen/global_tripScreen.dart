@@ -44,7 +44,7 @@ class GlobalTripScreen extends StatelessWidget {
               title: 'Nearby Places',
             ),
           ),
-          EnlargingCarousel(imageList: DummyList.imageList),
+          // EnlargingCarousel(imageList: DummyList.imageList),
           SizedBox(
             height: 10,
           ),

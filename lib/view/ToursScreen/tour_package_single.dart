@@ -150,7 +150,7 @@ class TourPackageSingle extends StatelessWidget {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 12),
                                             child: Text(
-                                              'Price Starts from ₹2${tourPackageController.tourPackage.value.offerAmount}/-',
+                                              'Price Starts from ₹${tourPackageController.tourPackage.value.offerAmount}/-',
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold,

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
+import 'package:trifs_app/controller/app%20controls/home_controller.dart';
 import 'package:trifs_app/controller/app%20controls/location_controller.dart';
 import 'package:trifs_app/utils/constants/asset_path.dart';
 import 'package:trifs_app/utils/constants/colors.dart';
@@ -11,6 +12,7 @@ import 'package:trifs_app/view/Components/bottom_sheets.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/main_package.dart';
+import 'package:trifs_app/view/Components/shimmer.dart';
 import 'package:trifs_app/view/Components/top_attraction_slider.dart';
 import 'package:trifs_app/view/GlobalTripScreen/global_tripScreen.dart';
 import 'package:trifs_app/view/Home%20Screen/Components/trif_switches.dart';
@@ -29,6 +31,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final locationController = Get.put(LocationController());
+  final homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               asset: AppIcons.tours,
                               title: 'Tours',
                               onTap: () {
-                                Get.to(() =>  TourScreen());
+                                Get.to(() => TourScreen());
                               },
                               comingSoon: false,
                             ),
@@ -157,7 +160,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 CustomText.buildTitleText(
                                   title: 'Top Attractions',
                                 ),
-                                TopAttractionSlider(),
+                                Obx(() => homeController
+                                        .isAttractionsLoading.value
+                                    ? AppShimmer.buildAttractionSliderShimmer(
+                                        context)
+                                    : TopAttractionSlider()),
                               ],
                             )),
                         SizedBox(
@@ -166,7 +173,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         CustomText.buildTitleText(
                           title: 'Nearby Places',
                         ),
-                        EnlargingCarousel(imageList: DummyList.imageList),
+                        Obx(() => homeController.isPlacesLoading.value
+                            ? AppShimmer.buildPackageHoizShimmer()
+                            : EnlargingCarousel()),
                         SizedBox(
                           height: 10,
                         ),
@@ -192,7 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               CustomText.buildTitleText(
                                 title: 'Recommended Packages',
                               ),
-                              MainPackageCardList(),
+                              Obx(() => homeController.isLoading.value
+                                  ? AppShimmer.buildPackageVertShimmer()
+                                  : MainPackageCardList()),
                             ],
                           ),
                         )

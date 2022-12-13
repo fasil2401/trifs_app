@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trifs_app/controller/app%20controls/explore_controller.dart';
+import 'package:trifs_app/controller/app%20controls/home_controller.dart';
 import 'package:trifs_app/view/Components/app_bar.dart';
 import 'package:trifs_app/view/Components/carousel.dart';
 import 'package:trifs_app/view/Components/custom_text.dart';
+import 'package:trifs_app/view/Components/main_package.dart';
+import 'package:trifs_app/view/Components/shimmer.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/districts.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/explore_package_list.dart';
 import 'package:trifs_app/view/Explore%20Screen/Components/trending_slider.dart';
@@ -12,6 +15,7 @@ class ExploreScreen extends StatelessWidget {
   ExploreScreen({super.key});
 
   final exploreController = Get.put(ExploreController());
+  final homeController = Get.put(HomeController());
 
   final List<String> imageList = [
     "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -61,7 +65,9 @@ class ExploreScreen extends StatelessWidget {
                   CustomText.buildTitleText(
                     title: 'Recommended Packages',
                   ),
-                  ExplorePackageCardList(),
+                  Obx(() => homeController.isLoading.value
+                      ? AppShimmer.buildPackageVertShimmer()
+                      : MainPackageCardList()),
                 ],
               ),
             )
